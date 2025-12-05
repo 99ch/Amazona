@@ -915,51 +915,11 @@ class Ybc_newsletter extends Module
      }
      public function hookDisplayFooter()
      {
-          if(!$this->accessable)
-                return;            
-          $image = Configuration::get('YBC_NEWSLETTER_IMAGE') ? $this->_path.'views/img/config/'.Configuration::get('YBC_NEWSLETTER_IMAGE') : '';           
-          $logo = Configuration::get('YBC_NEWSLETTER_LOGO') ? $this->_path.'views/img/config/'.Configuration::get('YBC_NEWSLETTER_LOGO') : '';
-          $this->smarty->assign(array(
-            'YBC_NEWSLETTER_POPUP_CONTENT' => Configuration::get('YBC_NEWSLETTER_POPUP_CONTENT', (int)$this->context->language->id),          
-            'YBC_NEWSLETTER_IMAGE' => $image,            
-            'YBC_NEWSLETTER_LOGO' => $logo,
-            'YBC_NEWSLETTER_ACTION' => $this->context->link->getModuleLink('ybc_newsletter', 'submit'),
-            'YBC_NEWSLETTER_LOADING_IMG' => $this->_path.'/views/img/icon/loading.gif',
-            'YBC_NEWSLETTER_TPL' => _PS_MODULE_DIR_.'ybc_newsletter/views/templates',
-            'YBC_NEWSLETTER_MOBILE_HIDE' => (int)Configuration::get('YBC_NEWSLETTER_MOBILE_HIDE') ? true : false,
-            'YBC_NEWSLETTER_AUTO_HIDE' => (int)Configuration::get('YBC_NEWSLETTER_AUTO_HIDE') ? true : false,
-            'YBC_NEWSLETTER_TEMPLATE' => Configuration::get('YBC_NEWSLETTER_TEMPLATE'),
-            'YBC_NEWSLETTER_POPUP_TITLE' => Configuration::get('YBC_NEWSLETTER_POPUP_TITLE', $this->context->language->id),
-            'YBC_NEWSLETTER_POPUP_SUBTITLE' => Configuration::get('YBC_NEWSLETTER_POPUP_SUBTITLE', $this->context->language->id),
-            'YBC_NEWSLETTER_POPUP_DELAY' => Configuration::get('YBC_NEWSLETTER_POPUP_DELAY'),
-            'YBC_NEWSLETTER_POPUP_TYPE_SHOW' => Configuration::get('YBC_NEWSLETTER_POPUP_TYPE_SHOW'),            
-            'YBC_NEWSLETTER_fb_url' => Configuration::get('BLOCKSOCIAL_FACEBOOK'),
-			'YBC_NEWSLETTER_tw_url' => Configuration::get('BLOCKSOCIAL_TWITTER'),
-			'YBC_NEWSLETTER_rss_url' => Configuration::get('BLOCKSOCIAL_RSS'),
-			'YBC_NEWSLETTER_youtb_url' => Configuration::get('BLOCKSOCIAL_YOUTUBE'),
-			'YBC_NEWSLETTER_gg_url' => Configuration::get('BLOCKSOCIAL_GOOGLE_PLUS'),
-			'YBC_NEWSLETTER_pin_url' => Configuration::get('BLOCKSOCIAL_PINTEREST'),
-			'YBC_NEWSLETTER_vimeo_url' => Configuration::get('BLOCKSOCIAL_VIMEO'),
-			'YBC_NEWSLETTER_in_url' => Configuration::get('BLOCKSOCIAL_INSTAGRAM'),
-            'YBC_NEWSLETTER_li_url' => Configuration::get('BLOCKSOCIAL_LINKEDIN'),
-            'YBC_NEWSLETTER_CLOSE_PERMANAL' => Configuration::get('YBC_NEWSLETTER_CLOSE_PERMANAL'),          
-          ));
-          return $this->display(__FILE__, 'popup.tpl');
+         return '';
      }
      public function hookDisplayHeader()
      {
-        if(!isset($this->context->cookie->ybc_popup_start) || (isset($this->context->cookie->ybc_popup_start) && !$this->context->cookie->ybc_popup_start))
-        {
-            $this->context->cookie->ybc_popup_start = time();
-            $this->context->cookie->write();   
-        }
-        if(!($this->accessable = $this->checkAccess()))
-            return;
-        if(file_exists(dirname(__FILE__).'/views/css/custom.css'))
-            $this->context->controller->addCSS($this->_path.'views/css/custom.css','all');   
-        $this->context->controller->addCSS($this->_path.'views/css/newsletter.css','all');   
-        $this->context->controller->addJS($this->_path.'views/js/newsletter.js');
-        return $this->renderCustomCss();
+        return '';
      }
      public function getBlockNewsletterSubscriber()
 	 {
