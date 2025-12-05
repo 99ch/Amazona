@@ -307,7 +307,7 @@ class Ybc_themeconfig extends Module
                 'lang' => true,
                 'type' => 'textarea',
                 'group' => 'ybc_tab_footer',
-                'default' => 'Copyright 2017 <a href="#">Amazonas Co., LTD.</a>  All rights reserved<br />Website is proudly powered by <a class="_blank" href="http://www.prestashop.com">Prestashop</a>. All images used in the demo website are for preview purpose only and not included in the download file.',
+                'default' => 'Copyright 2025 koutonou Marketplace. All rights reserved',
             ),
             'YBC_TC_PAYMENT_LOGO' => array(
                 'label' => $this->l('Payment logo'),
@@ -1856,7 +1856,13 @@ class Ybc_themeconfig extends Module
     }
     public function hookYbcCopyright()
     {
-        return '<div class="ybc-copyright">'.Configuration::get('YBC_TC_COPYRIGHT_TEXT', (int)$this->context->language->id).'</div>';
+        $text = Configuration::get('YBC_TC_COPYRIGHT_TEXT', (int)$this->context->language->id);
+        if ($text) {
+            $legacy = 'Website is proudly powered by <a class="_blank" href="http://www.prestashop.com">Prestashop</a>. All images used in the demo website are for preview purpose only and not included in the download file.';
+            $text = str_replace(array($legacy, '<br />'.$legacy, '<br/>'.$legacy, '<br>'.$legacy), '', $text);
+            $text = trim($text);
+        }
+        return '<div class="ybc-copyright">'.$text.'</div>';
     }
     public function hookDisplayBackOfficeHeader()
     {
